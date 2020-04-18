@@ -16,8 +16,10 @@ import com.company.factoid.model.Fact
 import com.company.factoid.utils.presentText
 import kotlinx.android.synthetic.main.list_item_fact.view.*
 
-class FactListAdapter(private val list: List<Fact>) :
+class FactListAdapter() :
     RecyclerView.Adapter<FactListAdapter.FactViewHolder>() {
+    var list: List<Fact> = emptyList()
+
     override fun getItemCount(): Int = list.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FactViewHolder {

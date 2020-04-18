@@ -13,12 +13,16 @@ class FactPresenter(
         retrieveData()
     }
 
-    private fun retrieveData() {
+    fun onRefresh() {
+        retrieveData(false)
+    }
+
+    private fun retrieveData(showLoading: Boolean = true) {
         dataFeedService.getFacts()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {
-                view.showLoading(true)
+                view.showLoading(showLoading)
             }
             .doFinally {
                 view.showLoading(false)

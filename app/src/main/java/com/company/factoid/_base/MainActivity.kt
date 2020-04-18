@@ -16,12 +16,19 @@ import org.koin.core.parameter.parametersOf
 class MainActivity : AppCompatActivity(), FactListPresenterView {
 
     private val presenter: FactPresenter by inject { parametersOf(this) }
+    private val adapter: FactListAdapter = FactListAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         list.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        list.adapter = adapter
         presenter.onCreate()
+        swipeRefreshLayout.setOnRefreshListener {
+            adapter.list = emptyList()
+            adapter.notifyDataSetChanged()
+            presenter.onRefresh()
+        }
     }
 
     override fun displayTitle(title: String?) {
@@ -29,10 +36,15 @@ class MainActivity : AppCompatActivity(), FactListPresenterView {
     }
 
     override fun displayFacts(factList: List<Fact>?) {
-        list.adapter = FactListAdapter(factList ?: emptyList())
+        adapter.list = factList ?: emptyList()
+        adapter.notifyDataSetChanged()
     }
 
     override fun showLoading(isLoading: Boolean) {
         progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+
+        if (!isLoading) {
+            swipeRefreshLayout.isRefreshing = false
+        }
     }
 }
