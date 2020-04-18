@@ -7,4 +7,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="Heading" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/colorHeading</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="Description" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/colorDescription</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
 </resources>
