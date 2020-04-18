@@ -17,13 +17,19 @@ class FactPresenter(
         dataFeedService.getFacts()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe {
+                view.showLoading(true)
+            }
+            .doFinally {
+                view.showLoading(false)
+            }
             .subscribe(
                 {
                     view.displayTitle(it.title)
                     view.displayFacts(it.rows)
                 },
-                { },
-                { }
+                {},
+                {}
             )
     }
 }

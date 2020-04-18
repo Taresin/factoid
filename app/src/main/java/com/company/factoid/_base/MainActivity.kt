@@ -1,6 +1,7 @@
 package com.company.factoid._base
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.company.factoid.R
@@ -29,5 +30,9 @@ class MainActivity : AppCompatActivity(), FactListPresenterView {
 
     override fun displayFacts(factList: List<Fact>?) {
         list.adapter = FactListAdapter(factList ?: emptyList())
+    }
+
+    override fun showLoading(isLoading: Boolean) {
+        progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 }
