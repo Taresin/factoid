@@ -24,6 +24,7 @@
         android:layout_marginEnd="8dp"
         android:layout_weight="1"
         app:layout_constraintEnd_toStartOf="@+id/image"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
         tools:text="Description" />
@@ -38,5 +39,9 @@
         android:maxWidth="100dp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/description"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:layout_height="100dp"
+        tools:layout_width="100dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
