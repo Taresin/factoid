@@ -2,6 +2,8 @@ package com.company.factoid._base
 
 import android.app.Application
 import com.company.factoid.api.DataFeedService
+import com.company.factoid.ui.FactListView
+import com.company.factoid.ui.FactPresenter
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
@@ -32,13 +34,18 @@ class FactoidApp : Application() {
         single { DataFeedService.getService(get()) }
     }
 
+    private val factModule = module {
+        single { (view: FactListView) -> FactPresenter(get(), view) }
+    }
+
     override fun onCreate() {
         super.onCreate()
         startKoin {
             androidContext(this@FactoidApp)
             androidLogger(level = Level.DEBUG)
             modules(
-                dataFeedModule
+                dataFeedModule,
+                factModule
             )
         }
     }
