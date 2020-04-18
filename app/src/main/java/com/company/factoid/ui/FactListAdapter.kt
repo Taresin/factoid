@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.company.factoid.R
 import com.company.factoid.model.Fact
+import com.company.factoid.utils.presentText
 import kotlinx.android.synthetic.main.list_item_fact.view.*
 
 class FactListAdapter(private val list: List<Fact>) :
@@ -25,8 +26,8 @@ class FactListAdapter(private val list: List<Fact>) :
 
     class FactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(fact: Fact) {
-            itemView.title.text = fact.title ?: "<No Title>"
-            itemView.description.text = fact.description ?: "<No Description>"
+            itemView.title.presentText(fact.title)
+            itemView.description.presentText(fact.description)
 
             fact.imageHref?.let {
                 Glide.with(itemView.context)
@@ -34,7 +35,6 @@ class FactListAdapter(private val list: List<Fact>) :
                     .into(itemView.image)
                 println("Loading: $it")
             }
-
         }
     }
 }
