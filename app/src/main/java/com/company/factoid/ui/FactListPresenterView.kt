@@ -2,7 +2,7 @@ package com.company.factoid.ui
 
 import com.company.factoid.model.Fact
 
-interface FactListView {
+interface FactListPresenterView {
     fun displayTitle(title: String?)
     fun displayFacts(factList: List<Fact>?)
 }

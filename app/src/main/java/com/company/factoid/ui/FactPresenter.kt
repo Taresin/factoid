@@ -6,7 +6,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class FactPresenter(
     private val dataFeedService: DataFeedService,
-    private val view: FactListView
+    private val view: FactListPresenterView
 ) {
 
     fun onCreate() {
