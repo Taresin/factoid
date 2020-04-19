@@ -2,6 +2,7 @@ package com.company.factoid._base
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.company.factoid.R
@@ -42,6 +43,14 @@ class MainActivity : AppCompatActivity(), FactListPresenterView {
         adapter.notifyDataSetChanged()
     }
 
+    override fun displayError() {
+        Toast.makeText(
+            this,
+            "An error occurred when retrieving data. Try refreshing.",
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
     override fun showLoading(isLoading: Boolean) {
         progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
 
@@ -49,4 +58,6 @@ class MainActivity : AppCompatActivity(), FactListPresenterView {
             swipeRefreshLayout.isRefreshing = false
         }
     }
+
+
 }

@@ -38,7 +38,9 @@ class FactPresenter(
                     response.rows?.let { facts -> imageRepo.fetchImages(facts) }
                     view.displayFacts(response.rows)
                 },
-                {},
+                {
+                    view.displayError()
+                },
                 {}
             )
     }
