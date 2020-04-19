@@ -1,7 +1,9 @@
 package com.company.factoid._base
 
 import android.app.Application
+import androidx.appcompat.app.AppCompatActivity
 import com.company.factoid.api.DataFeedService
+import com.company.factoid.io.ImageRepo
 import com.company.factoid.ui.FactListPresenterView
 import com.company.factoid.ui.FactPresenter
 import com.google.gson.Gson
@@ -35,7 +37,8 @@ class FactoidApp : Application() {
     }
 
     private val factModule = module {
-        single { (view: FactListPresenterView) -> FactPresenter(get(), view) }
+        single { (activity: AppCompatActivity) -> ImageRepo(activity) }
+        single { (view: FactListPresenterView) -> FactPresenter(get(), view, get()) }
     }
 
     override fun onCreate() {
